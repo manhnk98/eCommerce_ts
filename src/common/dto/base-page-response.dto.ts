@@ -1,11 +1,11 @@
 export class PaginateBaseDto<T> {
-  public docs: T[];
+    public docs: T[];
 
-  public totalPage: number;
+    public totalPage: number;
 
-  public size: number;
+    public size: number;
 
-  public page: number;
+    public page: number;
 
-  public total: number;
+    public total: number;
 }
