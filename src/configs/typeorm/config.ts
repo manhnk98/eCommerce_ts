@@ -1,7 +1,7 @@
 import {env} from "@environments";
 import {DataSource} from "typeorm";
 
-const dataSource = new DataSource({
+export const AppDataSource = new DataSource({
     type: "mongodb",
     url: env.get("mongodb.url"),
     entities: ["src/entities/**/*.ts"],
@@ -11,4 +11,3 @@ const dataSource = new DataSource({
     migrationsRun: false,
 });
 
-export default dataSource;

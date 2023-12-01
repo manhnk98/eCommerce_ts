@@ -24,6 +24,9 @@
       ],
       "@entities": [
         "src/entities"
+      ],
+      "@configs": [
+        "src/configs"
       ]
     }
   }

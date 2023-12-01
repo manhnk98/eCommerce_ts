@@ -3,6 +3,7 @@ import {Column, CreateDateColumn, Entity, ObjectId, ObjectIdColumn, UpdateDateCo
 
 @Entity({name: "tb_api_key"})
 export class ApiKeyEntity {
+
     @ObjectIdColumn()
     id: ObjectId;
 
@@ -35,5 +36,3 @@ export class ApiKeyEntity {
         );
     }
 }
-
-export default ApiKeyEntity;

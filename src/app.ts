@@ -1,12 +1,13 @@
 import {env} from "@environments";
 import * as express from "express";
-import dataSource from "./configs/typeorm/config";
+import AppDataSource from "./configs/typeorm/config";
 import {ApiKeyEntity} from "./entities/apikey.entity";
 
 const app = express();
 const port = env.get("port");
+const router = express.Router()
 
-dataSource
+AppDataSource
     .initialize()
     .then(() => {
         console.log("Data Source has been initialized!");
@@ -23,11 +24,9 @@ app.get("/", async (req, res) => {
     };
 
     const key = new ApiKeyEntity({...k});
+    console.log("ApiKeyEntity => ", key);
 
-    console.log("keycc => ", key);
-    console.log("dcm tuyet voi");
-
-    await dataSource.getMongoRepository(ApiKeyEntity).save(key);
+    await AppDataSource.getMongoRepository(ApiKeyEntity).save(key);
     res.send("Hello World!");
 });
 
