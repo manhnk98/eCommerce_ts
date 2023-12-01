@@ -1,7 +1,7 @@
 import {env} from "@environments";
 import * as express from "express";
-import AppDataSource from "./configs/typeorm/config";
-import {ApiKeyEntity} from "./entities/apikey.entity";
+import {AppDataSource} from "@configs";
+import {ApiKeyEntity} from "@entities";
 
 const app = express();
 const port = env.get("port");
