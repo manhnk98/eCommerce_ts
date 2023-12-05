@@ -1,38 +1,27 @@
-import {Expose, plainToClass} from "class-transformer";
-import {Column, CreateDateColumn, Entity, ObjectId, ObjectIdColumn, UpdateDateColumn,} from "typeorm";
+import * as mongoose from "mongoose";
+import {Schema} from "mongoose";
 
-@Entity({name: "tb_api_key"})
-export class ApiKeyEntity {
+const DOCUMENT_NAME = "Apikey"
+const COLLECTION_NAME = "tb_api_key"
 
-    @ObjectIdColumn()
-    id: ObjectId;
-
-    @Column()
-    @Expose()
-    key: string;
-
-    @Column({default: true})
-    @Expose()
-    status: boolean;
-
-    @Column({enum: ["0000", "1111", "2222"], nullable: false})
-    @Expose()
-    permissions: string[];
-
-    @CreateDateColumn({nullable: true})
-    @Expose()
-    createdAt: Date;
-
-    @UpdateDateColumn({nullable: true})
-    @Expose()
-    updatedAt: Date;
-
-    constructor(apiKey: Partial<ApiKeyEntity>) {
-        Object.assign(
-            this,
-            plainToClass(ApiKeyEntity, apiKey, {
-                excludeExtraneousValues: true,
-            })
-        );
+const ApiKeySchema = new Schema({
+    key: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    status: {
+        type: Boolean,
+        default: true
+    },
+    permissions: {
+        type: [String],
+        required: true,
+        enum: ["0000", "1111", "2222"]
     }
-}
+}, {
+    timestamps: true,
+    collection: COLLECTION_NAME
+})
+
+export const ApiKeyEntity = mongoose.model(DOCUMENT_NAME, ApiKeySchema)
