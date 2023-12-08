@@ -25,15 +25,15 @@ export abstract class AbstractMongoRepository<T> implements IRepository<T> {
     }
 
     delete(options: any): any {
-        this.entity.deleteOne()
+        return this.entity.deleteOne(options);
     }
 
     findAll(options: any): T[] {
-        return [];
+        return this.entity.find(options);
     }
 
     findById(id: string): T {
-        return undefined;
+        return this.entity.findById(id);
     }
 
     findByListId(listId: string[]): T[] {
